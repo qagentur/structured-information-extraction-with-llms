@@ -1,0 +1,196 @@
+---
+title: "GOR 2025 Workshop: Structured Information Extraction with LLMs"
+author: "Paul Simmering"
+institute: "Q Agentur für Forschung GmbH"       
+format:
+    revealjs:
+        toc: true
+        toc-depth: 1
+        toc-title: "Table of Contents"
+        number-sections: true
+        slide-number: true
+---
+
+# Introduction
+
+## Q Agentur für Forschung
+
+- Market research agency from Mannheim
+- Qualitative and qualitative research
+- Using language models since 2019 for social media and review analysis
+- I'm a senior data scientist at Q
+
+This workshop builds on the GOR24 presentation "Where do LLMs fit in NLP pipelines?" by my colleague Dr. Paavo Huoviala and me.
+
+## Goals for today
+
+- Get hands-on experience with structured output tasks
+- Get an overview of model and tool choices
+- Share experiences and use cases
+
+## Pre-requisites
+
+- Basic Python knowledge (easy to pick up for R users)
+- Need API access to a large language model provider: OpenAI, AzureOpenAI Service, Google Gemini, Anthropic, Cohere, or a litellm-compatible backend
+- Ability to run Python code on your machine or Google Colab
+- Ideally do the set-up before the workshop
+
+## Housekeeping
+
+- Slides and example code is available on GitHub
+- Please ask questions at any time
+- 4 exercises, use my example cases or bring your own
+- 2 discussions
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone qagentur/gor-2025-workshop
+```
+
+Create a venv and install the required packages:
+
+```bash
+python -m venv venv
+source venv/bin/activate
+pip install instructor
+```
+
+Set the API key for your language model provider:
+
+```bash
+export PROVIDER_API_KEY=your-api-key
+```
+
+# LLMs and structured output
+
+## Structured output tasks
+
+- Text classification
+- Named entity recognition
+- Sentiment analysis
+- Relation extraction
+- Summarization
+- Question answering
+
+## Why use an LLM for structured output?
+
+- Just a few examples are needed
+- Do any task with the same model
+- Do multiple tasks at once
+- Analyze text, images and audio in the same way
+- Easy to use via an API
+
+## Model choices
+
+- Size/Cost vs performance
+- Open and closed source choices
+
+## Why is structured output hard?
+
+- By default LLMs can generate any token at any position
+- It can return unparsable output
+
+## JSON mode
+
+Demand that the output is always a valid JSON object.
+
+## Function calling
+
+Specify the output format as a JSON schema.
+
+## Constrained generation
+
+Limit which tokens can be generated so that the output conforms to a schema.
+
+## instructor and Pydantic
+
+Instructor is a Python package for structured output tasks with language models.
+
+Alternatives: mirascope, langchain, llama_index, marvin
+
+## Exercise 1: Extracting structured information
+
+Pick a structured output task and try to solve it with your language model provider
+
+- Use a Pydantic model to describe the desired output
+- Find a case where the model fails to give the right answer
+
+# Learning from examples
+
+## Few-shot learning
+
+Give a few examples of inputs and their outputs in the prompt for in-context learning.
+
+## Exercise 2: Few-shot learning
+
+Add examples to your structured output task
+
+- Do the outputs change?
+- How many examples are needed?
+
+## Fine-tuning
+
+Adjust the model's weights to improve performance on a specific task. Requires examples.
+
+## Discussion: Fine-tuning vs few-shot learning
+
+When would you use fine-tuning over few-shot learning?
+
+# Evaluation
+
+## Metrics
+
+- Accuracy
+- Precision, recall, F1
+- Human evaluation
+- LLM as judge
+
+## Exercise 3: Evaluation
+
+Evaluate your model on a test set.
+
+- compare different models
+- compare different few-shot examples
+
+## Discussion: Classic NLP vs LLMs
+
+When would you use classic NLP methods over LLMs?
+
+# Efficiency
+
+## Prompt caching
+
+Cache the repeated parts of your prompts so the LLM doesn't have to recompute them every time.
+
+## Request caching
+
+Cache the answer to your API calls so you don't have to pay for the same answer twice.
+
+## Cost control
+
+Check the cost of your API calls and estimate what a batch of calls will cost.
+
+## Parallelization
+
+Run multiple API calls in parallel to speed up your pipeline.
+
+## Exercise 4: Efficiency
+
+Optimize your pipeline for cost and speed.
+
+- check the cost of your API calls
+- parallelize your API calls
+- cache your prompts
+
+## Contact
+
+Website: [teamq.de](https://teamq.de)
+
+Github: [github.com/qagentur](https://github.com/qagentur)
+
+Contact me: <paul.simmering@teamq.de>
+
+We offer market research services and consulting on AI projects.

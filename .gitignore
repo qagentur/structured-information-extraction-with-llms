@@ -1,0 +1,4 @@
+gor25_workshop_files/
+.DS_Store
+.env
+*.html
