@@ -9,6 +9,7 @@ format:
         toc-title: "Table of Contents"
         number-sections: true
         slide-number: true
+        highlight-style: monokai
 ---
 
 # Introduction
@@ -16,7 +17,7 @@ format:
 ## Q Agentur für Forschung
 
 - Market research agency from Mannheim
-- Qualitative and qualitative research
+- Classic market research + data science
 - Using language models since 2019 for social media and review analysis
 - I'm a senior data scientist at Q
 
@@ -24,8 +25,9 @@ This workshop builds on the GOR24 presentation "Where do LLMs fit in NLP pipelin
 
 ## Goals for today
 
-- Get hands-on experience with structured output tasks
-- Get an overview of model and tool choices
+- Get hands-on experience with structured information extraction
+- Get an overview of available models and tools
+- Learn about evaluation, efficiency and limitations
 - Share experiences and use cases
 
 ## Pre-requisites
@@ -33,11 +35,11 @@ This workshop builds on the GOR24 presentation "Where do LLMs fit in NLP pipelin
 - Basic Python knowledge (easy to pick up for R users)
 - Need API access to a large language model provider: OpenAI, AzureOpenAI Service, Google Gemini, Anthropic, Cohere, or a litellm-compatible backend
 - Ability to run Python code on your machine or Google Colab
-- Ideally do the set-up before the workshop
+- Installation should be done ahead of time
 
 ## Housekeeping
 
-- Slides and example code is available on GitHub
+- Slides and example code is available on GitHub: <qagentur.github.com/structured-extraction-workshop>
 - Please ask questions at any time
 - 4 exercises, use my example cases or bring your own
 - 2 discussions
@@ -88,6 +90,8 @@ export PROVIDER_API_KEY=your-api-key
 - Size/Cost vs performance
 - Open and closed source choices
 
+TODO: Update with latest model choices close to the workshop date
+
 ## Why is structured output hard?
 
 - By default LLMs can generate any token at any position
@@ -107,9 +111,38 @@ Limit which tokens can be generated so that the output conforms to a schema.
 
 ## instructor and Pydantic
 
-Instructor is a Python package for structured output tasks with language models.
+Instructor is an open source Python package for structured output tasks with LLMs. It builds on Pydantic.
 
-Alternatives: mirascope, langchain, llama_index, marvin
+```python
+import instructor
+from pydantic import BaseModel
+from openai import OpenAI
+
+class UserInfo(BaseModel):
+    name: str
+    age: int
+
+client = instructor.from_openai(OpenAI())
+
+user_info = client.chat.completions.create(
+    model="gpt-4o-mini",
+    response_model=UserInfo,
+    messages=[{"role": "user", "content": "John Doe is 30 years old."}],
+)
+
+print(user_info.name) # John Doe
+print(user_info.age) # 30
+```
+
+## Alternatives to instructor
+
+- mirascope
+- langchain
+- llama_index
+- marvin
+- outlines
+- sglang
+- directly specifying JSON schemas for your API calls
 
 ## Exercise 1: Extracting structured information
 
