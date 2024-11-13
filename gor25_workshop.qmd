@@ -80,7 +80,7 @@ export PROVIDER_API_KEY=your-api-key
 ## Why use an LLM for structured output?
 
 - Just a few examples are needed
-- Do any task with the same model
+- Do multiple tasks with the same model
 - Do multiple tasks at once
 - Analyze text, images and audio in the same way
 - Easy to use via an API
@@ -136,13 +136,20 @@ print(user_info.age) # 30
 
 ## Alternatives to instructor
 
-- mirascope
-- langchain
-- llama_index
-- marvin
-- outlines
-- sglang
-- directly specifying JSON schemas for your API calls
+In Python:
+
+- [mirascope](https://github.com/mirascope/mirascope)
+- [langchain](https://github.com/langchain-ai/langchain)
+- [llama_index](https://github.com/run-llama/llama_index)
+- [marvin](https://github.com/prefecthq/marvin)
+- [outlines](https://github.com/dottxt-ai/outlines)
+- [sglang](https://github.com/sgl-project/sglang)
+
+In R:
+
+- [elmer](https://elmer.tidyverse.org/articles/structured-data.html)
+
+Any programming language: directly specifying JSON schemas for your API calls
 
 ## Exercise 1: Extracting structured information
 
