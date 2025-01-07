@@ -240,6 +240,15 @@ In R:
 
 Any programming language: directly specifying JSON schemas for your API calls
 
+## Monitoring systems
+
+Essential for identifying issues, improving performance, managing costs, and for compliance.
+
+- Minimalist approach: write log files and query them later
+- More sophisticated: LLM-specific monitoring tools like [Langfuse](https://langfuse.com), [W&B Weave](https://wandb.ai/site/weave/), and [Langsmith](https://langsmith.com)
+
+TODO: Check these recommendations
+
 # Wrap-up
 
 ## Summary
