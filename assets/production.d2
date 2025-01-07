@@ -1,0 +1,76 @@
+# Information extraction with LLMs
+direction: right
+
+style: {
+  font-size: 49
+}
+
+vars: {
+  d2-config: {
+    layout-engine: dagre
+    theme-id: 300
+  }
+}
+
+Input: {
+  label: Input data
+  shape: cylinder
+}
+
+Model Store: {
+  shape: rectangle
+}
+
+LLM: {
+  shape: rectangle
+  icon: https://icons.terrastruct.com/aws%2FMachine%20Learning%2FAmazon-SageMaker_Model_light-bg.svg
+}
+
+Inference: {
+  label: Inference server
+  shape: rectangle
+}
+
+Client: {
+  shape: rectangle
+}
+
+Versioned Configuration: {
+  Few-shot examples: {
+    shape: rectangle
+    style: {
+      multiple: true
+    }
+  }
+
+  Prompt: {
+    shape: rectangle
+  }
+
+  Output Schema: {
+    shape: rectangle
+  }
+
+  Sampling settings: {
+    shape: rectangle
+  }
+}
+
+Structured Output: {
+  shape: rectangle
+}
+
+Monitoring: {
+  label: Monitoring system
+  shape: rectangle
+}
+
+# Define connections
+Input -> Client
+Versioned Configuration -> Client
+Client <-> Inference: make parallel requests
+Model Store -> LLM: provide model
+Inference <-> LLM: run
+Inference -> Structured Output
+Inference -> Monitoring: log performance & errors
+Client -> Monitoring: log inputs and outputs

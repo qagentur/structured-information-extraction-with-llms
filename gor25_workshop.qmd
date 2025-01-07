@@ -9,25 +9,10 @@ format:
         slide-number: true
         highlight-style: monokai
         footer: "Structured Information Extraction with LLMs"
-        logo: logo.png
+        logo: assets/logo.png
 ---
 
 # Introduction
-
-## Agenda
-
-TODO: update timings
-
-| Time | Topic |
-| ---- | ----- |
-| 10:00 | Introduction |
-| 10:15 | Setting up the environment |
-| 10:30 | Notebook + Exercises |
-| 11:30 | Break |
-| 11:45 | Comparison of methods |
-| 12:00 | Discussion: Classic NLP vs LLMs |
-| 12:15 | Models and tools |
-| 12:30 | Wrap-up |
 
 ## About Q
 
@@ -38,38 +23,54 @@ TODO: update timings
 
 This workshop builds on the GOR24 presentation "Where do LLMs fit in NLP pipelines?" by my colleague Dr. Paavo Huoviala and me.
 
-## Goals for today
+## Goals for this workshop
 
 1. Get hands-on experience with structured information extraction
 2. Get an overview of available models and tools
 3. Learn about evaluation, efficiency and limitations
 4. Share experiences and use cases
 
-## Workshop Organization
+## Agenda 10:00 - 12:30
 
-- Run the examples in the Colab notebook
-- Slides and code is available on GitHub: <qagentur.github.com/structured-extraction-workshop>
+| Time | Topic |
+| ---- | ----- |
+| 10:00 | Introduction & overview |
+| 10:15 | Setting up the environment |
+| 10:35 | Notebook and exercises |
+| 11:35 | Comparison of methods |
+| 11:45 | Discussion: Classic NLP vs LLMs |
+| 12:00 | Models, tools and best practices |
+| 12:15 | Q&A and wrap-up |
+
+Feel free to take a break during the exercises.
+
+## Workshop organization
+
 - Ask questions at any time
 - Use my example cases or bring your own
+- Slides and code are available on GitHub: <qagentur.github.com/structured-extraction-workshop>
 
-## Google Colab
+## Quick survey
 
-- We will use a Jupyter notebook, please run it either in Google Colab or on your own computer
-- It's a free cloud environment to run Python notebooks
-- Please open it now and log in with your Google account
-- Add a T4 GPU
-- Run the first two cells to install the necessary packages and download the model
+::: {.incremental}
 
-Link to the Colab:
-<https://colab.research.google.com/drive/1vzlZa2C64KTN4ogROmEADDKC5OKx1aCf#scrollTo=FjcVTAKjR7EA>
+- Have you used a chat assistant, like ChatGPT?
+- Do you know Python?
+- Do you know R?
+- Have you used an LLM API?
+- Have you used a structured output API?
+
+:::
 
 # LLMs and structured output
 
-## Output types
+## Types of NLP tasks
 
 :::: {.columns}
 
 ::: {.column width="50%"}
+
+<div style="background-color: #03FFAB; color: white; border-radius: 5px; color: black;">
 
 **Structured output**
 
@@ -78,6 +79,8 @@ Link to the Colab:
 - Sentiment analysis
 - Entity linking
 - Part of speech tagging
+
+</div>
 
 :::
 
@@ -94,45 +97,71 @@ Link to the Colab:
 :::
 ::::
 
-## Why use an LLM for structured output?
+## Information extraction with LLMs
 
-- Just a few examples are needed
-- Do multiple tasks with the same model
-- Do multiple tasks at once
-- Analyze text, images and audio in the same way
+![Basic information extraction pipeline](assets/information_extraction.svg)
+
+## Why use an LLM for structured information extraction?
+
+- Lack of training data to train a classic model
+- Great amount of built-in knowledge
+- Extreme flexibility:
+  - Multiple tasks with the same model
+  - Multiple tasks at once
+  - Analyze text, images and audio in the same way
 - Easy to use via an API
 
-# Demo and exercises
+# Notebook and exercises
+
+## Jupyter notebook setup
+
+- Use Colab (easier, requires Google account) or your own computer
+- Colab is a free cloud environment to run Python notebooks
+- Use a T4 GPU on Colab
+- Run the first few cells to install the necessary packages and download the model
+
+Link to the notebook on Colab:
+<https://colab.research.google.com/drive/1vzlZa2C64KTN4ogROmEADDKC5OKx1aCf#scrollTo=FjcVTAKjR7EA>
 
 ## Notebook
 
 - Let's run the notebook together
 - I'll add more background information and alternatives later
+- Use the [AG News dataset](https://huggingface.co/datasets/fancyzhx/ag_news) at <https://huggingface.co/datasets/fancyzhx/ag_news> if you need examples
 
 ## Exercise 1: Prompt the model
 
-Run the notebook cells and see if you receive an answer from the model. Can you make it answer with just the name of the news category? What could go wrong?
+Run the notebook cells and see if you receive an answer from the model. 
+
+- Can you make it answer with just the name of the news category?
+- What could go wrong?
 
 ## Exercise 2: Structured output
 
 Modify the examples and play with them. Some ideas:
 
-- add a new news category
-- add a new type of entity
-- extract the intensity of the sentiment
-- find a case where the model fails to give the right answer
+- Add a new news category
+- Add a new type of entity
+- Extract the intensity of the sentiment
+- Find a case where the model fails to give the right answer
 
 ## Exercise 3: Multi task prompt
 
-Modify the NewsAnalysis class to extract more information from the news text. Find other news texts on the web and see if the model can extract the information.
+Modify the NewsAnalysis class to extract more information from the news text.
+
+Find other long news texts on the web and see if the model can extract the information.
 
 ## Exercise 4: Few shot learning
 
 Add another news category and an example for it. Test your classifier with some examples.
 
-## Exercise 5: Evaluation
+## Exercise 5: Evaluation & competition
 
-Can you increase the accuracy by adding instructions or more examples?
+Let's have a little **competition** and **see how high we can get the accuracy**. Everything is allowed, except for changing the model or using fine-tuning. Collaboration is encouraged.
+
+At the end of our allotted time, I'll count down from an accuracy of 100%, asking if someone reached that accuracy.
+
+Participation is optional — if you'd rather not compete and just try out things at your own pace, that's fine too 😊
 
 # Classic NLP vs LLMs
 
@@ -142,25 +171,24 @@ Options:
 
 - Manual prompting
 - Automated prompt engineering
-- Fine-tuning SLM
+- Fine-tuning SLM, e.g. ModernBERT or specialized models like GliNER
 - Fine-tuning LLM
 
 When to use which one?
 
 ## Benchmarks
 
-TODO: Add benchmarks
+TODO: Add benchmarks closer to the workshop date
 
 ## Discussion: When to use which method?
 
-## Best SLMs
+# Models, tools and best practices
 
-- **ModernBERT** is a strong choice for many structured NLP tasks, especially text classification.
-- **GliNER** is a strong choice for zero shot named entity recognition.
+## Production system overview
 
-# Models and tools
+![Production system overview](assets/production.svg)
 
-## Alternative models
+## Alternative LLMs
 
 - Size/Cost vs performance
 - Open and closed source choices
@@ -176,28 +204,39 @@ We've used Llama.cpp for the demo, which let us run the models without needing a
 
 Huge differences in cost and performance between models and providers. Use [artificialanalysis.ai](https://artificialanalysis.ai) to compare models and providers.
 
+Considerations: available models, cost, throughput, latency, privacy, security
+
 ## Ways to get structured output
 
 By default LLMs can generate any token at any position. To use it in a pipeline, we need to constrain the output.
 
-- **JSON mode**: Demand that the output is always a valid JSON object.
-- **Tool calling**: Create a JSON according to a given schema. Can be used as input to a function.
-- **Constrained generation**: Limit which tokens can be generated so that the output conforms to a schema.
+- **Tool calling**: Provide a JSON schema that the model's answer must conform to. Can be used to let the model call a function. Widely supported.
+- **Constrained generation**: Limit which tokens can be generated so that the output conforms to an arbitrary schema. Most efficient, but not as widely supported.
+- **JSON mode**: Request that the output is always a valid JSON object. Not recommended.
 
-## Alternatives to instructor
+## Alternative client libraries
+
+:::: {.columns}
+
+::: {.column width="50%"}
 
 In Python:
 
-- [mirascope](https://github.com/mirascope/mirascope)
-- [langchain](https://github.com/langchain-ai/langchain)
-- [llama_index](https://github.com/run-llama/llama_index)
-- [marvin](https://github.com/prefecthq/marvin)
-- [outlines](https://github.com/dottxt-ai/outlines)
-- [sglang](https://github.com/sgl-project/sglang)
+- [mirascope](https://github.com/mirascope/mirascope): tool calling
+- [marvin](https://github.com/prefecthq/marvin): tool calling
+- [outlines](https://github.com/dottxt-ai/outlines): constrained generation
+- [sglang](https://github.com/sgl-project/sglang): constrained generation
+- supported by most LLM client libraries
+
+:::
+::: {.column width="50%"}
 
 In R:
 
-- [elmer](https://elmer.tidyverse.org/articles/structured-data.html)
+- [ellmer](https://ellmer.tidyverse.org)
+
+:::
+::::
 
 Any programming language: directly specifying JSON schemas for your API calls
 

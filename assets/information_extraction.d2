@@ -1,0 +1,48 @@
+# Information extraction with LLMs
+direction: right
+
+style: {
+  font-size: 49
+}
+
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 300
+  }
+}
+
+Input Text: {
+  shape: rectangle
+}
+
+LLM: {
+  shape: rectangle
+  icon: https://icons.terrastruct.com/aws%2FMachine%20Learning%2FAmazon-SageMaker_Model_light-bg.svg
+}
+
+Few-shot examples: {
+  shape: rectangle
+  style: {
+    multiple: true
+  }
+}
+
+Prompt: {
+  shape: rectangle
+}
+
+Output Schema: {
+  shape: rectangle
+}
+
+Structured Output: {
+  shape: rectangle
+}
+
+# Define connections
+Input Text -> LLM
+Few-shot examples -> Prompt
+Prompt -> LLM
+Output Schema -> LLM
+LLM -> Structured Output
