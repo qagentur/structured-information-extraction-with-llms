@@ -16,16 +16,18 @@ format:
 
 ## Agenda
 
+TODO: update timings
+
 | Time | Topic |
 | ---- | ----- |
 | 10:00 | Introduction |
-| 10:15 | Structured output tasks |
-| 10:30 | Learning from examples |
-| 10:45 | Evaluation |
-| 11:00 | Efficiency |
-| 11:15 | Break |
-| 11:30 | Exercise 1 |
-| 11:45 | Exercise 2 |
+| 10:15 | Setting up the environment |
+| 10:30 | Notebook + Exercises |
+| 11:30 | Break |
+| 11:45 | Comparison of methods |
+| 12:00 | Discussion: Classic NLP vs LLMs |
+| 12:15 | Models and tools |
+| 12:30 | Wrap-up |
 
 ## About Q
 
@@ -45,29 +47,52 @@ This workshop builds on the GOR24 presentation "Where do LLMs fit in NLP pipelin
 
 ## Workshop Organization
 
-- Slides and example code is available on GitHub: <qagentur.github.com/structured-extraction-workshop>
-- Please ask questions at any time
-- 4 exercises, use my example cases or bring your own
-- 2 discussions
+- Run the examples in the Colab notebook
+- Slides and code is available on GitHub: <qagentur.github.com/structured-extraction-workshop>
+- Ask questions at any time
+- Use my example cases or bring your own
 
 ## Google Colab
 
-- We will use Google Colab for the workshop
-- It's free and runs in the browser
+- We will use a Jupyter notebook, please run it either in Google Colab or on your own computer
+- It's a free cloud environment to run Python notebooks
+- Please open it now and log in with your Google account
+- Add a T4 GPU
+- Run the first two cells to install the necessary packages and download the model
 
 Link to the Colab:
 <https://colab.research.google.com/drive/1vzlZa2C64KTN4ogROmEADDKC5OKx1aCf#scrollTo=FjcVTAKjR7EA>
 
 # LLMs and structured output
 
-## Structured output tasks
+## Output types
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+**Structured output**
 
 - Text classification
 - Named entity recognition
 - Sentiment analysis
-- Relation extraction
+- Entity linking
+- Part of speech tagging
+
+:::
+
+::: {.column width="50%"}
+
+**Unstructured output**
+
+- Chat
 - Summarization
-- Question answering
+- Creative writing
+- Translation
+- Code generation
+
+:::
+::::
 
 ## Why use an LLM for structured output?
 
@@ -77,54 +102,87 @@ Link to the Colab:
 - Analyze text, images and audio in the same way
 - Easy to use via an API
 
-## Model choices
+# Demo and exercises
+
+## Notebook
+
+- Let's run the notebook together
+- I'll add more background information and alternatives later
+
+## Exercise 1: Prompt the model
+
+Run the notebook cells and see if you receive an answer from the model. Can you make it answer with just the name of the news category? What could go wrong?
+
+## Exercise 2: Structured output
+
+Modify the examples and play with them. Some ideas:
+
+- add a new news category
+- add a new type of entity
+- extract the intensity of the sentiment
+- find a case where the model fails to give the right answer
+
+## Exercise 3: Multi task prompt
+
+Modify the NewsAnalysis class to extract more information from the news text. Find other news texts on the web and see if the model can extract the information.
+
+## Exercise 4: Few shot learning
+
+Add another news category and an example for it. Test your classifier with some examples.
+
+## Exercise 5: Evaluation
+
+Can you increase the accuracy by adding instructions or more examples?
+
+# Classic NLP vs LLMs
+
+When would you use classic NLP methods over LLMs?
+
+Options:
+
+- Manual prompting
+- Automated prompt engineering
+- Fine-tuning SLM
+- Fine-tuning LLM
+
+When to use which one?
+
+## Benchmarks
+
+TODO: Add benchmarks
+
+## Discussion: When to use which method?
+
+## Best SLMs
+
+- **ModernBERT** is a strong choice for many structured NLP tasks, especially text classification.
+- **GliNER** is a strong choice for zero shot named entity recognition.
+
+# Models and tools
+
+## Alternative models
 
 - Size/Cost vs performance
 - Open and closed source choices
 
 TODO: Update with latest model choices close to the workshop date
 
-## Why is structured output hard?
+## Alternatives inference engines
 
-- By default LLMs can generate any token at any position
-- It can return unparsable output
+We've used Llama.cpp for the demo, which let us run the models without needing an external API.
 
-## JSON mode
+- **vLLM** for large scale inference with your own GPUs
+- **API providers** like OpenAI, Anthropic, Google, Fireworks.ai, Groq...
 
-Demand that the output is always a valid JSON object.
+Huge differences in cost and performance between models and providers. Use [artificialanalysis.ai](https://artificialanalysis.ai) to compare models and providers.
 
-## Function calling
+## Ways to get structured output
 
-Specify the output format as a JSON schema.
+By default LLMs can generate any token at any position. To use it in a pipeline, we need to constrain the output.
 
-## Constrained generation
-
-Limit which tokens can be generated so that the output conforms to a schema.
-
-## instructor and Pydantic
-
-Instructor is an open source Python package for structured output tasks with LLMs. It builds on Pydantic.
-
-```python
-import instructor
-from pydantic import BaseModel
-from openai import OpenAI
-
-class UserInfo(BaseModel):
-    name: str
-    age: int
-
-client = instructor.from_openai(OpenAI())
-
-user_info = client.chat.completions.create(
-    model="gpt-4o-mini",
-    response_model=UserInfo,
-    messages=[{"role": "user", "content": "John Doe is 30 years old."}],
-)
-
-print(user_info.name) # John Doe
-print(user_info.age) # 30
-```
+- **JSON mode**: Demand that the output is always a valid JSON object.
+- **Tool calling**: Create a JSON according to a given schema. Can be used as input to a function.
+- **Constrained generation**: Limit which tokens can be generated so that the output conforms to a schema.
 
 ## Alternatives to instructor
 
@@ -143,79 +201,14 @@ In R:
 
 Any programming language: directly specifying JSON schemas for your API calls
 
-## Exercise 1: Extracting structured information
+# Wrap-up
 
-Pick a structured output task and try to solve it with your language model provider
+## Summary
 
-- Use a Pydantic model to describe the desired output
-- Find a case where the model fails to give the right answer
-
-# Learning from examples
-
-## Few-shot learning
-
-Give a few examples of inputs and their outputs in the prompt for in-context learning.
-
-## Exercise 2: Few-shot learning
-
-Add examples to your structured output task
-
-- Do the outputs change?
-- How many examples are needed?
-
-## Fine-tuning
-
-Adjust the model's weights to improve performance on a specific task. Requires examples.
-
-## Discussion: Fine-tuning vs few-shot learning
-
-When would you use fine-tuning over few-shot learning?
-
-# Evaluation
-
-## Metrics
-
-- Accuracy
-- Precision, recall, F1
-- Human evaluation
-- LLM as judge
-
-## Exercise 3: Evaluation
-
-Evaluate your model on a test set.
-
-- compare different models
-- compare different few-shot examples
-
-## Discussion: Classic NLP vs LLMs
-
-When would you use classic NLP methods over LLMs?
-
-# Efficiency
-
-## Prompt caching
-
-Cache the repeated parts of your prompts so the LLM doesn't have to recompute them every time.
-
-## Request caching
-
-Cache the answer to your API calls so you don't have to pay for the same answer twice.
-
-## Cost control
-
-Check the cost of your API calls and estimate what a batch of calls will cost.
-
-## Parallelization
-
-Run multiple API calls in parallel to speed up your pipeline.
-
-## Exercise 4: Efficiency
-
-Optimize your pipeline for cost and speed.
-
-- check the cost of your API calls
-- parallelize your API calls
-- cache your prompts
+- LLMs are powerful tools for structured output
+- There are many open source models and libraries available
+- Classic models are still strong and are more efficient
+- Fine-tuning is required to get the highest accuracy
 
 ## Contact
 
