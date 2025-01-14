@@ -1,8 +1,18 @@
 # Information extraction with LLMs
 direction: right
 
-style: {
-  font-size: 49
+classes: {
+  node: {
+    style: {
+      font-size: 24
+    }
+  }
+  edge: {
+    style: {
+      font-size: 24
+      font-color: black
+    }
+  }
 }
 
 vars: {
@@ -13,15 +23,18 @@ vars: {
 }
 
 Input Text: {
+  class: node
   shape: rectangle
 }
 
 LLM: {
+  class: node
   shape: rectangle
   icon: https://icons.terrastruct.com/aws%2FMachine%20Learning%2FAmazon-SageMaker_Model_light-bg.svg
 }
 
 Few-shot examples: {
+  class: node
   shape: rectangle
   style: {
     multiple: true
@@ -29,20 +42,33 @@ Few-shot examples: {
 }
 
 Prompt: {
+  class: node
   shape: rectangle
 }
 
 Output Schema: {
+  class: node
   shape: rectangle
 }
 
 Structured Output: {
+  class: node
   shape: rectangle
 }
 
 # Define connections
-Input Text -> LLM
-Few-shot examples -> Prompt
-Prompt -> LLM
-Output Schema -> LLM
-LLM -> Structured Output
+Input Text -> LLM: {
+  class: edge
+}
+Few-shot examples -> Prompt: {
+  class: edge
+}
+Prompt -> LLM: {
+  class: edge
+}
+Output Schema -> LLM: {
+  class: edge
+}
+LLM -> Structured Output: {
+  class: edge
+}

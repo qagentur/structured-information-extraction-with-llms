@@ -1,8 +1,18 @@
 # Information extraction with LLMs
 direction: right
 
-style: {
-  font-size: 49
+classes: {
+  node: {
+    style: {
+      font-size: 24
+    }
+  }
+  edge: {
+    style: {
+      font-size: 24
+      font-color: black
+    }
+  }
 }
 
 vars: {
@@ -14,29 +24,35 @@ vars: {
 
 Input: {
   label: Input data
+  class: node
   shape: cylinder
 }
 
 Model Store: {
+  class: node
   shape: rectangle
 }
 
 LLM: {
+  class: node
   shape: rectangle
   icon: https://icons.terrastruct.com/aws%2FMachine%20Learning%2FAmazon-SageMaker_Model_light-bg.svg
 }
 
 Inference: {
+  class: node
   label: Inference server
   shape: rectangle
 }
 
 Client: {
+  class: node
   shape: rectangle
 }
 
 Versioned config: {
   Few-shot examples: {
+    class: node
     shape: rectangle
     style: {
       multiple: true
@@ -44,14 +60,17 @@ Versioned config: {
   }
 
   Prompt: {
+    class: node
     shape: rectangle
   }
 
   Output Schema: {
+    class: node
     shape: rectangle
   }
 
   Settings: |md
+    ## Settings
     - model_id
     - temperature
     - other settings
@@ -59,20 +78,43 @@ Versioned config: {
 }
 
 Structured Output: {
+  class: node
   shape: rectangle
 }
 
 Monitoring: {
+  class: node
   label: Monitoring system
   shape: rectangle
 }
 
 # Define connections
-Input -> Client
-Versioned config -> Client
-Client <-> Inference: make parallel requests
-Model Store -> LLM: provide model
-Inference <-> LLM: run
-Inference -> Structured Output
-Inference -> Monitoring: log performance & errors
-Client -> Monitoring: log inputs and outputs
+Input -> Client: {
+  class: edge
+}
+Versioned config -> Client: {
+  class: edge
+}
+Client <-> Inference: {
+  class: edge
+  label: make parallel requests
+}
+Model Store -> LLM: {
+  class: edge
+  label: provide model
+}
+Inference <-> LLM: {
+  class: edge
+  label: run
+}
+Inference -> Structured Output: {
+  class: edge
+}
+Inference -> Monitoring: {
+  class: edge
+  label: log performance & errors
+}
+Client -> Monitoring: {
+  class: edge
+  label: log inputs and outputs
+}

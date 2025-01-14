@@ -157,11 +157,26 @@ Add another news category and an example for it. Test your classifier with some 
 
 ## Exercise 5: Evaluation & competition
 
-Let's have a little **competition** and **see how high we can get the accuracy**. Everything is allowed, except for changing the model or using fine-tuning. Collaboration is encouraged.
+Let's have a little **competition** and **see how high we can get the accuracy**. Everything is allowed, except for changing the model or using information from the test set. Collaboration is encouraged.
 
 At the end of our allotted time, I'll count down from an accuracy of 100%, asking if someone reached that accuracy.
 
-Participation is optional — if you'd rather not compete and just try out things at your own pace, that's fine too 😊
+Competiting is optional — if you'd rather just try out things at your own pace, that's fine too 😊
+
+## Exercise 5: Winners
+
+::: {.incremental}
+
+- Did a team reach **100%** accuracy?
+- Did a team reach **95%** accuracy?
+- Did a team reach **90%** accuracy?
+- Did a team reach **85%** accuracy?
+- Did a team reach **80%** accuracy?
+- Did a team reach **75%** accuracy?
+- Did a team reach **70%** accuracy?
+- Did a team reach **65%** accuracy?
+
+:::
 
 # Classic NLP vs LLMs
 
@@ -182,13 +197,18 @@ TODO: Add benchmarks closer to the workshop date
 
 ## Discussion: When to use which method?
 
+- Manual prompting
+- Automated prompt engineering
+- Fine-tuning SLM, e.g. ModernBERT or specialized models like GliNER
+- Fine-tuning LLM
+
 # Models, tools and best practices
 
 ## Production system overview
 
 ![Production system overview](assets/production.svg)
 
-## Alternative LLMs
+## Best LLMs for structured information extraction
 
 - Size/Cost vs performance
 - Open and closed source choices
@@ -226,7 +246,6 @@ In Python:
 - [marvin](https://github.com/prefecthq/marvin): tool calling
 - [outlines](https://github.com/dottxt-ai/outlines): constrained generation
 - [sglang](https://github.com/sgl-project/sglang): constrained generation
-- supported by most LLM client libraries
 
 :::
 ::: {.column width="50%"}
@@ -242,12 +261,9 @@ Any programming language: directly specifying JSON schemas for your API calls
 
 ## Monitoring systems
 
-Essential for identifying issues, improving performance, managing costs, and for compliance.
+![Track every LLM call to identify issues, improve accuracy, and manage costs](monitoring.svg)
 
-- Minimalist approach: write log files and query them later
-- More sophisticated: LLM-specific monitoring tools like [Langfuse](https://langfuse.com), [W&B Weave](https://wandb.ai/site/weave/), and [Langsmith](https://langsmith.com)
-
-TODO: Check these recommendations
+Many options, typically open core with commercial addons: [Arize AI](https://arize.com), [Helicone](https://helicone.ai), [Inspect](https://inspect.ai-safety-institute.org.uk), [Langsmith](https://langsmith.com), [openllmetry](https://github.com/traceloop/openllmetry), [W&B Weave](https://wandb.ai/site/weave/) and dozens more.
 
 # Wrap-up
 

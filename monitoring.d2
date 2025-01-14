@@ -1,0 +1,84 @@
+direction: right
+
+classes: {
+  node: {
+    style: {
+      font-size: 24
+    }
+  }
+  edge: {
+    style: {
+      font-size: 24
+      font-color: black
+    }
+  }
+}
+
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 300
+  }
+}
+
+Input: {
+  Prompt: {
+    class: node
+    shape: rectangle
+  }
+
+  Output Schema: {
+    class: node
+    shape: rectangle
+  }
+
+  Settings: |md
+    ## Settings
+    - model_id
+    - temperature
+    - other settings
+  |
+}
+
+LLM: {
+  class: node
+  shape: rectangle
+}
+
+Output: {
+  Text: {
+    class: node
+    shape: rectangle
+  }
+  Metadata: |md
+    - time spent
+    - tokens generated
+    - cost
+    - errors
+  |
+}
+
+Monitoring database: {
+  class: node
+  shape: cylinder
+}
+
+# Define connections
+Input -> LLM: {
+  class: edge
+}
+Input -> Monitoring database: {
+  class: edge
+  label: log input
+}
+LLM -> Output: {
+  class: edge
+}
+LLM -> Monitoring database: {
+  class: edge
+  label: log performance
+}
+Output -> Monitoring database: {
+  class: edge
+  label: log output
+}
