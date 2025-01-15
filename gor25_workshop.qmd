@@ -201,11 +201,13 @@ Options:
 
 When to use which one?
 
-## Benchmarks
+## Fine-tuning still beats prompting
 
-TODO: research benchmarks closer to the workshop date
+![Benchmarks](assets/benchmarks.png)
 
-Fine-tuning beats prompting, large models beat small models
+## Benchmark data sources
+
+![Benchmark data sources](assets/benchmark_sources.png)
 
 ## Discussion: When to use which method?
 
@@ -224,6 +226,7 @@ Fine-tuning beats prompting, large models beat small models
 
 - Size/Cost vs performance
 - Open and closed source choices
+- Diminishing returns for larger models past 8B parameters [Zhou et al. 2024](https://arxiv.org/abs/2412.02279)
 
 TODO: Update with latest model choices close to the workshop date. Use models listed in the benchmarks and on [Artificialanalysis.ai](https://artificialanalysis.ai).
 
