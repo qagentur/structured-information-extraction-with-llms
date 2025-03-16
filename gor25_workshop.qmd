@@ -14,7 +14,7 @@ format:
 
 # Introduction
 
-## About Q
+## About
 
 - I'm a Senior Data Scientist at Q Agentur für Forschung
 - Market research agency from Mannheim
@@ -48,7 +48,7 @@ Feel free to take a break during the exercises.
 
 - Ask questions at any time
 - Use my example cases or bring your own
-- Slides and code are available on GitHub: <qagentur.github.com/structured-extraction-workshop>
+- Slides and code are available on GitHub: <https://github.com/qagentur/structured-extraction-workshop>
 
 ## Quick survey
 
@@ -56,17 +56,30 @@ Feel free to take a break during the exercises.
 
 - Have you used a chat assistant, like ChatGPT?
 - Do you know Python?
-- Do you know R?
 - Have you used an LLM API?
-- Have you used a structured output API?
+- Have you used tool calling or structured output?
 
 :::
 
 # LLMs and structured output
 
-## Types of NLP tasks
+## Types of language model outputs
 
 :::: {.columns}
+
+::: {.column width="50%"}
+
+**Unstructured output**
+
+- Chat
+- Creative writing
+- Code generation
+- Summarization
+- Translation
+- Reasoning
+
+:::
+
 
 ::: {.column width="50%"}
 
@@ -85,17 +98,6 @@ Feel free to take a break during the exercises.
 
 :::
 
-::: {.column width="50%"}
-
-**Unstructured output**
-
-- Chat
-- Summarization
-- Creative writing
-- Translation
-- Code generation
-
-:::
 ::::
 
 ## Information extraction with LLMs
@@ -128,7 +130,7 @@ Link to the notebook on Colab:
 
 - Let's run the notebook together
 - I'll add more background information and alternatives later
-- Use the [AG News dataset](https://huggingface.co/datasets/fancyzhx/ag_news) at <https://huggingface.co/datasets/fancyzhx/ag_news> if you need examples
+- Use the AG News dataset at <https://huggingface.co/datasets/fancyzhx/ag_news>
 
 ## Exercise 1: Prompt the model
 
@@ -139,13 +141,15 @@ Run the notebook cells and see if you receive an answer from the model.
 
 ## Exercise 2: Structured output
 
-Modify the examples and play with them. Some ideas:
+Modify the examples and tinker with them. Some ideas:
 
 - Add a new news category
 - Add a new type of entity
 - Extract the intensity of the sentiment
 - Find a case where the model fails to give the right answer
-- Advanced: Implement Chain-of-Thought: an intermediate step where the model generates a free form answer, followed by a second step where the model extracts the structured output from it
+- Implement chain-of-thought:
+  - Generate a free form answer
+  - Extract the structured output from the answer
 
 ## Exercise 3: Multi task prompt
 
@@ -157,13 +161,11 @@ Find other long news texts on the web and see if the model can extract the infor
 
 Add another news category and an example for it. Test your classifier with some examples.
 
-## Exercise 5: Evaluation & competition
+## Exercise 5: Eval & optimization
 
 Let's have a little **competition** and **see how high we can get the accuracy**. Everything is allowed, except for changing the model or using information from the test set. Collaboration is encouraged.
 
-At the end of our allotted time, I'll count down from an accuracy of 100%, asking if someone reached that accuracy.
-
-Competiting is optional — if you'd rather just try out things at your own pace, that's fine too 😊
+Competiting is optional — if you'd rather just try out things at your own pace, that's fine too 😉
 
 ## Boosting accuracy 🚀
 
@@ -190,17 +192,6 @@ Competiting is optional — if you'd rather just try out things at your own pace
 
 # Classic NLP vs LLMs
 
-When would you use classic NLP methods over LLMs?
-
-Options:
-
-- Manual prompting
-- Automated prompt engineering
-- Fine-tuning SLM, e.g. ModernBERT or specialized models like GliNER
-- Fine-tuning LLM
-
-When to use which one?
-
 ## Fine-tuning still beats prompting
 
 ![Benchmarks](assets/benchmarks.png)
@@ -220,13 +211,21 @@ When to use which one?
 
 ## Production system overview
 
-![Production system overview](assets/production.svg)
+![](assets/production.svg)
 
 ## Best LLMs for structured information extraction
 
 - Size/Cost vs performance
 - Open and closed source choices
 - Diminishing returns for larger models past 8B parameters [Zhou et al. 2024](https://arxiv.org/abs/2412.02279)
+
+| Version | Parameters | Tools | Vision |
+|--------------|------------|--------|--------|
+| Llama 3.1 | 8B, 70B, 405B | ✅ | ❌ |
+| Llama 3.2 | 1B, 3B, 11B, 90B |✅ | ✅ (11B, 90B) |
+| Llama 3.3 | 70B |✅ | ❌ |
+
+The Llama family of models from Meta is a solid choice. They are freely available on Hugging Face. Olmo 2, Qwen 2.5, Gemma 2, and Phi-4,
 
 TODO: Update with latest model choices close to the workshop date. Use models listed in the benchmarks and on [Artificialanalysis.ai](https://artificialanalysis.ai).
 
@@ -293,8 +292,8 @@ Many options, typically open core with commercial addons: [Arize AI](https://ari
 
 Website: [teamq.de](https://teamq.de)
 
-Github: [github.com/qagentur](https://github.com/qagentur)
+GitHub: [github.com/qagentur](https://github.com/qagentur)
 
-Contact me: <paul.simmering@teamq.de>
+Email: <paul.simmering@teamq.de>
 
-We offer market research services and consulting on AI projects.
+We offer market research services and AI consulting.
