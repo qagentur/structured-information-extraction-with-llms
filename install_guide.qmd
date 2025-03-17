@@ -20,7 +20,7 @@ I'm looking forward to meeting you at the workshop!
 
 This option requires a [Google account](https://support.google.com/accounts/answer/27441?hl=en&co=GENIE.Platform%3DDesktop). Please create a free account if you do not have one yet.
 
-Next, go to <https://colab.research.google.com/drive/1lpQDRxTx3tnbChFqGUOW6vEF7CwZ3aw3> and log in by clicking on the "Sign in" button in the top right corner. Now you're ready to go. Hover over the code cells and click the "play" button to run them. The first cells will install the required Python packages and download a language model. These cells need to be run every time you open the notebook.
+Next, go to <https://colab.research.google.com/drive/1lpQDRxTx3tnbChFqGUOW6vEF7CwZ3aw3> and log in by clicking on the "Sign in" button in the top right corner. Connect the notebook to an NVIDIA T4 GPU by clicking on the "Connect T4" button in the top right corner. Now you're ready to go. Hover over the code cells and click the "play" button to run them. The first cells will install the required Python packages and download a language model. These cells need to be run every time you open the notebook.
 
 ## Option 2: Local installation
 
