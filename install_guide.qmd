@@ -2,7 +2,7 @@
 title: "Install Guide for GOR 2025 Workshop on Structured Information Extraction with LLMs"
 author: "Paul Simmering"
 institute: "Q Agentur für Forschung"
-date: "2025-01-15"
+date: "2025-03-17"
 format: pdf
 ---
 
@@ -28,10 +28,10 @@ The requirements to run the workshop locally are:
 
 - [Python](https://www.python.org) 3.10 or higher
 - [Jupyter](https://jupyter.org)
-- A copy of the workshop notebook, available from GitHub: [gor25_workshop.ipynb](https://github.com/q-agentur/gor25-workshop/blob/main/gor25_workshop.ipynb)
+- A copy of the workshop notebook, available by downloading the Google Colab file. Click on the "File" menu, select "Download" and then choose "Download .ipynb".
 - A Python environment with the following packages:
     - `instructor==1.7.2`
-    - `polars==1.19.0`
+    - `polars==1.20.0`
     - `llama-cpp-python==0.3.4`, if using a local LLM (see below)
   
 Open the workshop notebook in Jupyter or in a Jupyter-compatible IDE like VS Code or PyCharm.
@@ -46,7 +46,7 @@ Follow the installation steps described in the [llama-cpp-python readme](https:/
 
 ### Cloud LLM
 
-Set up instructor to connect to an LLM API. Replace the code related to installing and running a local LLM with the code to connect to the LLM API.
+Set up instructor to connect to an LLM API. Replace the code related to installing and running a local LLM with the code to connect to the LLM API. The example below shows how to connect to OpenAI.
 
 ```python
 import instructor
@@ -58,6 +58,6 @@ client = instructor.from_openai(OpenAI(
 # More secure: set the OPENAI_API_KEY environment variable
 ```
 
-You can use your own API key from any other provider that is [compatible](https://python.useinstructor.com/integrations/) with instructor. This includes OpenAI, Anthropic, Google Cloud, and many other providers. See the [instructor documentation](https://python.useinstructor.com/integrations/) for more details.
+You can use your own API key from OpenAI or any other provider that is [compatible](https://python.useinstructor.com/integrations/) with instructor. This includes OpenAI, Anthropic, Google Cloud, and many others. See the [instructor documentation](https://python.useinstructor.com/integrations/) for more details.
 
-If you do not have an API key and cannot use Google Colab, please contact me ahead of time at: [paul.simmering@teamq.de](mailto:paul.simmering@teamq.de). I will provide you with an API key to connect with an LLM server during the workshop.
+If you do not have an API key and cannot use Google Colab, please contact me ahead of time at: [paul.simmering@teamq.de](mailto:paul.simmering@teamq.de).
