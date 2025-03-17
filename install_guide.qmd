@@ -60,4 +60,6 @@ client = instructor.from_openai(OpenAI(
 
 You can use your own API key from OpenAI or any other provider that is [compatible](https://python.useinstructor.com/integrations/) with instructor. This includes OpenAI, Anthropic, Google Cloud, and many others. See the [instructor documentation](https://python.useinstructor.com/integrations/) for more details.
 
-If you do not have an API key and cannot use Google Colab, please contact me ahead of time at: [paul.simmering@teamq.de](mailto:paul.simmering@teamq.de).
+--- 
+
+If none of these options (Google Colab, local LLM, or API access via your own API key) work for you, please contact me ahead of time at: [paul.simmering@teamq.de](mailto:paul.simmering@teamq.de). I will provide you with an API key to connect with an LLM server during the workshop.
