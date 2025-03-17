@@ -58,7 +58,9 @@ client = instructor.from_openai(OpenAI(
 # More secure: set the OPENAI_API_KEY environment variable
 ```
 
-You can use your own API key from OpenAI or any other provider that is [compatible](https://python.useinstructor.com/integrations/) with instructor. This includes OpenAI, Anthropic, Google Cloud, and many others. See the [instructor documentation](https://python.useinstructor.com/integrations/) for more details.
+You can use your own API key from OpenAI or any other provider that is [compatible](https://python.useinstructor.com/integrations/) with instructor. This includes OpenAI, Anthropic, Google Cloud, and many others. See the [instructor documentation](https://python.useinstructor.com/integrations/) for more details. If you don't have an API key, please contact me ahead of time at: [paul.simmering@teamq.de](mailto:paul.simmering@teamq.de).
+
+Using a cloud LLM requires some changes to the workshop notebook code. If you're not comfortable with this, I suggest using the Google Colab option.
 
 --- 
 
