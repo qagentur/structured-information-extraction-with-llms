@@ -32,13 +32,13 @@ This workshop builds on the GOR24 presentation "Where do LLMs fit in NLP pipelin
 
 ## Agenda 10:00 - 12:30
 
-| Time | Topic |
+| Start time | Topic |
 | ---- | ----- |
 | 10:00 | Introduction & overview |
 | 10:15 | Setting up the environment |
-| 10:35 | Notebook and exercises |
-| 11:35 | Comparison of methods |
-| 11:45 | Discussion: Classic NLP vs LLMs |
+| 10:30 | Notebook and exercises |
+| 11:10 | Micro-Hackathon |
+| 11:40 | Discussion: classic NLP vs LLM |
 | 12:00 | Models, tools and best practices |
 | 12:15 | Q&A and wrap-up |
 
@@ -47,8 +47,8 @@ Feel free to take a break during the exercises.
 ## Workshop organization
 
 - Ask questions at any time
-- Use my example cases or bring your own
-- Slides and code are available on GitHub: <https://github.com/qagentur/structured-extraction-workshop>
+- Notebook is on [Google Colab](https://colab.research.google.com/drive/1lpQDRxTx3tnbChFqGUOW6vEF7CwZ3aw3?usp=sharing)
+- Slides will be available on my website: <https://simmering.dev/talks/gor25workshop>
 
 ## Quick survey
 
@@ -56,7 +56,9 @@ Feel free to take a break during the exercises.
 
 - Have you used a chat assistant, like ChatGPT?
 - Do you know Python?
+- Do you know R?
 - Have you used an LLM API?
+- Have you used a local LLM or set up your own server?
 - Have you used tool calling or structured output?
 
 :::
@@ -104,15 +106,61 @@ Feel free to take a break during the exercises.
 
 ![Basic information extraction pipeline](assets/information_extraction.svg)
 
+## LLM architecture is inefficient for structured output
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+**Encoder-decoder (BERT)**
+
+<div style="background-color: #e9ecef; padding: 5px; margin: 0 10px 10px 10px; border-radius: 3px;">P(Class 1)</div>
+<div style="background-color: #e9ecef; padding: 5px; margin: 0 10px 10px 10px; border-radius: 3px;">P(Class 2)</div>
+<div style="background-color: #e9ecef; padding: 5px; margin: 0 10px 10px 10px; border-radius: 3px;">P(Class 3)</div>
+
+:::
+
+::: {.column width="50%"}
+
+**Decoder-only (GPT)**
+
+<div style="background-color: #e9ecef; padding: 5px; margin: 0 10px 10px 10px; border-radius: 3px;">P(Token 1)</div>
+<div style="background-color: #e9ecef; padding: 5px; margin: 0 10px 10px 10px; border-radius: 3px;">P(Token 2)</div>
+<div style="color: #6c757d; text-align: center; margin: 0 10px 10px 10px;">⋮</div>
+<div style="background-color: #e9ecef; padding: 5px; margin: 0 10px 10px 10px; border-radius: 3px;">P(Token k)</div>
+
+
+:::
+
+::::
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+- ✅ Directly read probabilities
+- ✅ Straightforward loss function (cross entropy)
+
+:::
+
+::: {.column width="50%"}
+
+- ❌ Need to teach output format
+- ❌ Model training loss function is not the classification loss function
+
+:::
+
+::::
+
 ## Why use an LLM for structured information extraction?
 
-- Great amount of built-in knowledge
-- Lack of labeled examples to train a classic model
-- Extreme flexibility:
-  - One model for multiple tasks
-  - Multiple tasks at once
-  - Analyze text, images and audio in the same way
+- Use built-in knowledge
+- Training examples are optional
+- Single model for multiple tasks
+- Multiple tasks at once
+- Analyze text and images together
 - Easy to use via an API
+- Use in agentic workflows
 
 # Notebook and exercises
 
@@ -124,7 +172,7 @@ Feel free to take a break during the exercises.
 - Run the first few cells to install the necessary packages and download the model
 
 Link to the notebook on Colab:
-<https://colab.research.google.com/drive/1vzlZa2C64KTN4ogROmEADDKC5OKx1aCf#scrollTo=FjcVTAKjR7EA>
+<https://colab.research.google.com/drive/1lpQDRxTx3tnbChFqGUOW6vEF7CwZ3aw3?usp=sharing>
 
 ## Notebook
 
@@ -148,8 +196,8 @@ Modify the examples and tinker with them. Some ideas:
 - Extract the intensity of the sentiment
 - Find a case where the model fails to give the right answer
 - Implement chain-of-thought:
-  - Generate a free form answer
-  - Extract the structured output from the answer
+  - Use a free form text field as the first field in structured output
+  - Alternatively, use a two-step process with an unstructured and a structured output
 
 ## Exercise 3: Multi task prompt
 
@@ -165,7 +213,7 @@ Add another news category and an example for it. Test your classifier with some 
 
 Let's have a little **competition** and **see how high we can get the accuracy**. Everything is allowed, except for changing the model or using information from the test set. Collaboration is encouraged.
 
-Competiting is optional — if you'd rather just try out things at your own pace, that's fine too 😉
+Competiting is optional. If you'd rather just try out things at a slower pace, that's fine too 😉
 
 ## Boosting accuracy 🚀
 
@@ -190,11 +238,18 @@ Competiting is optional — if you'd rather just try out things at your own pace
 
 :::
 
+## Recap of the competition and exercises
+
+- What did you try?
+- What worked well, what didn't?
+
 # Classic NLP vs LLMs
 
 ## Fine-tuning still beats prompting
 
 ![Benchmarks](assets/benchmarks.png)
+
+TODO: Update benchmarks with latest values found
 
 ## Benchmark data sources
 
@@ -213,21 +268,30 @@ Competiting is optional — if you'd rather just try out things at your own pace
 
 ![](assets/production.svg)
 
-## Best LLMs for structured information extraction
+## Best open weights LLMs for structured information extraction
 
 - Size/Cost vs performance
-- Open and closed source choices
 - Diminishing returns for larger models past 8B parameters [Zhou et al. 2024](https://arxiv.org/abs/2412.02279)
 
 | Version | Parameters | Tools | Vision |
 |--------------|------------|--------|--------|
 | Llama 3.1 | 8B, 70B, 405B | ✅ | ❌ |
-| Llama 3.2 | 1B, 3B, 11B, 90B |✅ | ✅ (11B, 90B) |
+| Llama 3.2 | 1B, 3B, 11B, 90B | ✅ | ✅ (11B, 90B) |
 | Llama 3.3 | 70B |✅ | ❌ |
+| Gemma 3 | 27B |✅ | ✅ |
 
-The Llama family of models from Meta is a solid choice. They are freely available on Hugging Face. Olmo 2, Qwen 2.5, Gemma 2, and Phi-4,
+The Llama and Gemma model families from Meta and Google are solid choices. Also consider Phi from Microsoft and Qwen from Alibaba.
 
-TODO: Update with latest model choices close to the workshop date. Use models listed in the benchmarks and on [Artificialanalysis.ai](https://artificialanalysis.ai).
+Open models tend to be behind leading closed models like Claude 3.7 Sonnet in terms of performance.
+
+## Reasoning models
+
+- Built-in chain of thought
+- Top benchmark scores on logical tasks (math, science, coding)
+
+→ high potential for correct information extraction
+
+But they are even slower than LLMs and have higher costs due to thinking token generation. Not the right choice for high-volume applications.
 
 ## Alternatives inference engines
 
@@ -236,7 +300,7 @@ We've used Llama.cpp for the demo, which let us run the models without needing a
 - **vLLM** for large scale inference with your own GPUs
 - **API providers** like OpenAI, Anthropic, Google, Fireworks.ai, Groq...
 
-Huge differences in cost and performance between models and providers. Use [artificialanalysis.ai](https://artificialanalysis.ai) to compare models and providers.
+Huge differences in cost and performance between models and providers. Use [artificialanalysis.ai](https://artificialanalysis.ai) or [llm-stats.com](https://llm-stats.com) to compare models and providers.
 
 Considerations: available models, cost, throughput, latency, privacy, security
 
@@ -297,3 +361,5 @@ GitHub: [github.com/qagentur](https://github.com/qagentur)
 Email: <paul.simmering@teamq.de>
 
 We offer market research services and AI consulting.
+
+I would enjoy hearing about what you build with LLMs!
