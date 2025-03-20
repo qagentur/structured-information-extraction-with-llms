@@ -95,6 +95,7 @@ Feel free to take a break during the exercises.
 - Sentiment analysis
 - Entity linking
 - Part of speech tagging
+- Claim extraction
 
 </div>
 
