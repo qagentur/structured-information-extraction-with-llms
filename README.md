@@ -13,7 +13,7 @@ This workshop provides hands-on experience with using LLMs for structured inform
 
 ## Getting Started
 
-See [Installation Guide GOR 2025 Workshop.pdf](Installation%20Guide%20GOR%202025%20Workshop.pdf) for detailed setup instructions for either:
+See [Install Guide GOR 2025 Workshop.pdf](Install%20Guide%20GOR%202025%20Workshop.pdf) for detailed setup instructions for either:
 
 - Google Colab (recommended for beginners)
 - Local installation with Python
