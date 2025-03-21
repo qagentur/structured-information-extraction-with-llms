@@ -48,7 +48,7 @@ Feel free to take a break during the exercises.
 
 - Ask questions at any time
 - Notebook is on [Google Colab](https://colab.research.google.com/drive/1lpQDRxTx3tnbChFqGUOW6vEF7CwZ3aw3?usp=sharing)
-- All workshop materials are available on [GitHub](https://github.com/qagentur/structured-information-extraction-with-llms)
+- All workshop materials are available at [github.com/qagentur/structured-information-extraction-with-llms](https://github.com/qagentur/structured-information-extraction-with-llms)
 
 ## Quick survey
 
