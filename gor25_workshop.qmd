@@ -339,7 +339,7 @@ Any programming language: directly specifying JSON schemas for your API calls
 
 ## Monitoring systems
 
-![Track every LLM call to identify issues, improve accuracy, and manage costs](monitoring.svg)
+![Track every LLM call to identify issues, improve accuracy, and manage costs](assets/monitoring.svg)
 
 Many options, typically open core with commercial addons: [Arize AI](https://arize.com), [Helicone](https://helicone.ai), [Inspect](https://inspect.ai-safety-institute.org.uk), [Langsmith](https://langsmith.com), [openllmetry](https://github.com/traceloop/openllmetry), [W&B Weave](https://wandb.ai/site/weave/) and dozens more.
 
