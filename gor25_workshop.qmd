@@ -180,6 +180,7 @@ Link to the notebook on Colab:
 - Let's run the notebook together
 - I'll add more background information and alternatives later
 - Use the AG News dataset at <https://huggingface.co/datasets/fancyzhx/ag_news>
+- AG News is a dataset of news article snippets with 4 possible categories: World, Sports, Sci/Tech, and Business
 
 ## Exercise 1: Prompt the model
 
@@ -249,8 +250,6 @@ Competiting is optional. If you'd rather just try out things at a slower pace, t
 ## Fine-tuning still beats prompting
 
 ![Benchmarks](assets/benchmarks.png)
-
-TODO: Update benchmarks with latest values found
 
 ## Benchmark data sources
 
