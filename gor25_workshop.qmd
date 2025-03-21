@@ -48,7 +48,7 @@ Feel free to take a break during the exercises.
 
 - Ask questions at any time
 - Notebook is on [Google Colab](https://colab.research.google.com/drive/1lpQDRxTx3tnbChFqGUOW6vEF7CwZ3aw3?usp=sharing)
-- Slides will be available on my website: <https://simmering.dev/talks/gor25workshop>
+- All workshop materials are available on [GitHub](https://github.com/qagentur/structured-information-extraction-with-llms)
 
 ## Quick survey
 
@@ -107,7 +107,7 @@ Feel free to take a break during the exercises.
 
 ![Basic information extraction pipeline](assets/information_extraction.svg)
 
-## LLM architecture is inefficient for structured output
+## LLM architecture is inefficient
 
 :::: {.columns}
 
@@ -140,14 +140,14 @@ Feel free to take a break during the exercises.
 ::: {.column width="50%"}
 
 - ✅ Directly read probabilities
-- ✅ Straightforward loss function (cross entropy)
+- ✅ Clear loss function (cross entropy)
 
 :::
 
 ::: {.column width="50%"}
 
 - ❌ Need to teach output format
-- ❌ Model training loss function is not the classification loss function
+- ❌ Training loss is not the classification loss
 
 :::
 
@@ -236,7 +236,6 @@ Competiting is optional. If you'd rather just try out things at a slower pace, t
 - Did a team reach **80%** accuracy?
 - Did a team reach **75%** accuracy?
 - Did a team reach **70%** accuracy?
-- Did a team reach **65%** accuracy?
 
 :::
 
@@ -264,14 +263,7 @@ Competiting is optional. If you'd rather just try out things at a slower pace, t
 
 # Models, tools and best practices
 
-## Production system overview
-
-![](assets/production.svg)
-
 ## Best open weights LLMs for structured information extraction
-
-- Size/Cost vs performance
-- Diminishing returns for larger models past 8B parameters [Zhou et al. 2024](https://arxiv.org/abs/2412.02279)
 
 | Version | Parameters | Tools | Vision |
 |--------------|------------|--------|--------|
@@ -280,9 +272,7 @@ Competiting is optional. If you'd rather just try out things at a slower pace, t
 | Llama 3.3 | 70B |✅ | ❌ |
 | Gemma 3 | 27B |✅ | ✅ |
 
-The Llama and Gemma model families from Meta and Google are solid choices. Also consider Phi from Microsoft and Qwen from Alibaba.
-
-Open models tend to be behind leading closed models like Claude 3.7 Sonnet in terms of performance.
+Also good: Phi (Microsoft) and Qwen (Alibaba). Close models tend to be ~6 months ahead of open models. [Zhou et al. 2024](https://arxiv.org/abs/2412.02279) noted diminishing returns for larger models past 8B parameters.
 
 ## Reasoning models
 
@@ -339,9 +329,20 @@ Any programming language: directly specifying JSON schemas for your API calls
 
 ## Monitoring systems
 
-![Track every LLM call to identify issues, improve accuracy, and manage costs](assets/monitoring.svg)
+Track everything:
+
+- Inputs: prompts, schemas, settings
+- Outputs: responses, latency, token usage, cost, errors
+- Model versions
+- Use tags to group traces
+
+Stay provider agnostic to be able to switch providers later.
 
 Many options, typically open core with commercial addons: [Arize AI](https://arize.com), [Helicone](https://helicone.ai), [Inspect](https://inspect.ai-safety-institute.org.uk), [Langsmith](https://langsmith.com), [openllmetry](https://github.com/traceloop/openllmetry), [W&B Weave](https://wandb.ai/site/weave/) and dozens more.
+
+## Production system overview
+
+![](assets/production.png)
 
 # Wrap-up
 
@@ -356,7 +357,7 @@ Many options, typically open core with commercial addons: [Arize AI](https://ari
 
 Website: [teamq.de](https://teamq.de)
 
-GitHub: [github.com/qagentur](https://github.com/qagentur)
+Workshop materials: [github.com/qagentur/structured-information-extraction-with-llms](https://github.com/qagentur/structured-information-extraction-with-llms)
 
 Email: <paul.simmering@teamq.de>
 

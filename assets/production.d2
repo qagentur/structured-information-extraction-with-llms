@@ -4,12 +4,12 @@ direction: right
 classes: {
   node: {
     style: {
-      font-size: 24
+      font-size: 36
     }
   }
   edge: {
     style: {
-      font-size: 24
+      font-size: 36
       font-color: black
     }
   }
@@ -17,7 +17,7 @@ classes: {
 
 vars: {
   d2-config: {
-    layout-engine: dagre
+    layout-engine: elk
     theme-id: 300
   }
 }
@@ -36,7 +36,6 @@ Model Store: {
 LLM: {
   class: node
   shape: rectangle
-  icon: https://icons.terrastruct.com/aws%2FMachine%20Learning%2FAmazon-SageMaker_Model_light-bg.svg
 }
 
 Inference: {
@@ -69,12 +68,24 @@ Versioned config: {
     shape: rectangle
   }
 
-  Settings: |md
-    ## Settings
-    - model_id
-    - temperature
-    - other settings
-  |
+  Settings: {
+    class: node
+    shape: rectangle
+    label: "Settings"
+
+    Model ID: {
+      class: node
+      shape: rectangle
+    }
+    Temperature: {
+      class: node
+      shape: rectangle
+    }
+    Other: {
+      class: node
+      shape: rectangle
+    }
+  }
 }
 
 Structured Output: {
