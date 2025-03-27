@@ -96,6 +96,7 @@ Feel free to take a break during the exercises.
 - Entity linking
 - Part of speech tagging
 - Claim extraction
+- Image description
 
 </div>
 
@@ -159,7 +160,7 @@ Feel free to take a break during the exercises.
 - Training examples are optional
 - Single model for multiple tasks
 - Multiple tasks at once
-- Analyze text and images together
+- Analyze text, audio and images together
 - Easy to use via an API
 - Use in agentic workflows
 

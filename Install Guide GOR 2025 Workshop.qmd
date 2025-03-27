@@ -2,29 +2,27 @@
 title: "Install Guide for GOR 2025 Workshop on Structured Information Extraction with LLMs"
 author: "Paul Simmering"
 institute: "Q Agentur für Forschung"
-date: "2025-03-17"
+date: "2025-03-25"
 format: pdf
 ---
 
 Dear workshop participant,
 
-This guide will help you prepare for the workshop by setting up the required software. Please prepare your laptop before the workshop, so we can start right away.
+Thank you for signing up to the GOR 2025 workshop on "Structured Information Extraction with LLMs". I'm looking forward to meeting you in Berlin!
 
-We will be using Python in a [Jupyter Notebook](https://jupyter.org) environment. There are two ways to run it: 1) in the cloud using Google Colab, 2) locally on your laptop. If you have not worked with Python or Jupyter before, I recommend using Google Colab, as it is easier to set up.
+This guide will help you prepare for the workshop by setting up the required software. Please prepare your laptop before the workshop, so we can start right away. If you have any questions or run into issues, please contact me ahead of time at: [paul.simmering@teamq.de](mailto:paul.simmering@teamq.de).
 
-If you have any questions or run into issues, please contact me ahead of time at: [paul.simmering@teamq.de](mailto:paul.simmering@teamq.de).
-
-I'm looking forward to meeting you at the workshop!
+The workshop will involve programming in Python. We will be using Python in a [Jupyter Notebook](https://jupyter.org) environment. There are two ways to run it: 1) in the cloud using Google Colab, 2) locally on your laptop. If you have not worked with Python or Jupyter before, I recommend using Google Colab, as it is easier to set up.
 
 ## Option 1: Google Colab
 
 This option requires a [Google account](https://support.google.com/accounts/answer/27441?hl=en&co=GENIE.Platform%3DDesktop). Please create a free account if you do not have one yet.
 
-Next, go to <https://colab.research.google.com/drive/1lpQDRxTx3tnbChFqGUOW6vEF7CwZ3aw3> and log in by clicking on the "Sign in" button in the top right corner. Connect the notebook to an NVIDIA T4 GPU by clicking on the "Connect T4" button in the top right corner. Now you're ready to go. Hover over the code cells and click the "play" button to run them. The first cells will install the required Python packages and download a language model. These cells need to be run every time you open the notebook.
+Next, go to <https://colab.research.google.com/drive/1lpQDRxTx3tnbChFqGUOW6vEF7CwZ3aw3> and log in by clicking on the "Sign in" button in the top right corner. Click on "File" in the top left and select "Open in playground mode". Then connect the notebook to an NVIDIA T4 GPU by clicking on the "Connect T4" button in the top right corner. Now you're ready to go. Hover over the code cells and click the "play" button to run them. The first cells will install the required Python packages and download a language model. These cells need to be run every time you open the notebook.
 
 ## Option 2: Local installation
 
-The requirements to run the workshop locally are:
+You can also run Python on your laptop. The requirements to run the workshop locally are:
 
 - [Python](https://www.python.org) 3.10 or higher
 - [Jupyter](https://jupyter.org)
@@ -36,32 +34,28 @@ The requirements to run the workshop locally are:
   
 Open the workshop notebook in Jupyter or in a Jupyter-compatible IDE like VS Code or PyCharm.
 
-There are two ways to run LLMs for the workshop: locally using llama-cpp-python or in the cloud.
+There are two ways to run the an LLM: locally using llama-cpp-python or in the cloud.
 
-### Local LLM
+### Local LLM with llama-cpp-python
 
 This option requires either a powerful CPU (for example a MacBook with M-series chip) or a GPU.
 
 Follow the installation steps described in the [llama-cpp-python readme](https://github.com/abetlen/llama-cpp-python). Use the "Metal" backend if you have a MacBook with M-series chip. The workshop notebook has runnable cells for an installation with CUDA 12.2 support.
 
-### Cloud LLM
+### Cloud LLM via an API
 
-Set up instructor to connect to an LLM API. Replace the code related to installing and running a local LLM with the code to connect to the LLM API. The example below shows how to connect to OpenAI.
+We are using the [instructor](https://python.useinstructor.com/) for structured output. Set up instructor to connect to an LLM API. The example below shows how to connect to OpenAI:
 
 ```python
 import instructor
 from openai import OpenAI
+from functools import partial
 
-client = instructor.from_openai(OpenAI(
-    api_key="YOUR_API_KEY",
-))
-# More secure: set the OPENAI_API_KEY environment variable
+client = instructor.from_openai(OpenAI(api_key="<your-api-key>"))
+# Simplify the function to create a chat completion
+create = partial(client.chat.completions.create, model="gpt-4o-mini")
 ```
 
-You can use your own API key from OpenAI or any other provider that is [compatible](https://python.useinstructor.com/integrations/) with instructor. This includes OpenAI, Anthropic, Google Cloud, and many others. See the [instructor documentation](https://python.useinstructor.com/integrations/) for more details. If you don't have an API key, please contact me ahead of time at: [paul.simmering@teamq.de](mailto:paul.simmering@teamq.de).
+This chunk is already in the workshop notebook. Uncomment it by removing the `#` at the beginning of the lines. The llama-cpp-python installation and related code is not needed in this case and you can skip running those cells.
 
-Using a cloud LLM requires some changes to the workshop notebook code. If you're not comfortable with this, I suggest using the Google Colab option.
-
---- 
-
-If none of these options (Google Colab, local LLM, or API access via your own API key) work for you, please contact me ahead of time at: [paul.simmering@teamq.de](mailto:paul.simmering@teamq.de). I will provide you with an API key to connect with an LLM server during the workshop.
+You can use your own API key from OpenAI or set up instructor to work with another provider that is compatible with instructor. This includes OpenAI, Anthropic, Google Cloud, and many others. See the [instructor documentation](https://python.useinstructor.com/integrations/) for more details. If you don't have an API key, please contact me at: [paul.simmering@teamq.de](mailto:paul.simmering@teamq.de).
