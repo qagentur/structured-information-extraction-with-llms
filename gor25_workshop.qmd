@@ -92,11 +92,10 @@ Feel free to take a break during the exercises.
 - Text classification
 - Named entity recognition
 - Attribute & relation extraction
-- Sentiment analysis
-- Entity linking
 - Part of speech tagging
+- Sentiment analysis
 - Claim extraction
-- Image description
+- Entity linking
 
 </div>
 
